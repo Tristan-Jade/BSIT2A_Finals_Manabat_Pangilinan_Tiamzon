@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPT Manabat, Pangilinan, Tiamzon</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style2.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="theme-icon" onclick="cycleTheme()">🎨</div>
+
+    <div id="tutorial-modal" class="tutorial-overlay">
+        <div class="tutorial-card">
+            <h2>Welcome to Everyday Meal!</h2>
+            <p>Discover recipes tailored to your skill level. Look for the colored dots next to "View Recipe":</p>
+            <div class="legend-container">
+                <div class="legend-item">
+                    <span class="dot dot-easy"></span>
+                    <strong>Easy:</strong> Simple meals, few ingredients.
+                </div>
+                <div class="legend-item">
+                    <span class="dot dot-medium"></span>
+                    <strong>Medium:</strong> Moderate prep time.
+                </div>
+                <div class="legend-item">
+                    <span class="dot dot-hard"></span>
+                    <strong>Hard:</strong> Complex steps or many ingredients.
+                </div>
+            </div>
+            <button id="close-tutorial" class="btn-tutorial-close">Got it, let's cook!</button>
+        </div>
+    </div>
+
+    <div class="app-container">
+        <header class="main-header">
+            <span class="badge">YOUR KITCHEN INSPIRATION</span>
+            <h1 class="title">Everyday Meal</h1>
+            <p>Discover fresh ideas for your next kitchen adventure.</p>
+        </header>
+
+        <nav class="search-nav">
+            <div class="filter-box"> 
+                 <div class="input-group">
+                    <div class="search-container" id="search-wrapper">
+                        <input type="text" id="search-input" placeholder="Search ingredient..." autocomplete="off">
+                        <div id="suggestions-box" class="suggestions-box hidden"></div>
+                    </div>
+                    <button id="search-btn">Search</button>
+                </div>
+
+                <!-- buttons -->
+                <div class="actions-row">
+
+                    <!-- LEFT SIDE -->
+                    <div class="top-actions">
+                        <button id="toggle-filter" class="btn-refresh">Filters ▼</button>
+                        <button id="random-btn" class="btn-refresh">More Meals</button>
+                        <button id="planner-btn" class="btn-refresh">Meal Planner 📅</button>
+                    </div>
+
+                    <!-- RIGHT SIDE -->
+                    <div class="fav-menu-container">
+                        <button id="fav-menu-btn" class="btn-fav-toggle">
+                            ♥️ Favorites (<span id="fav-count">0</span>)
+                        </button>
+                        <div id="fav-dropdown" class="fav-dropdown hidden">
+                            <div id="fav-list-items"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div id="advanced-filters">
+
+                    <div class="category-group">
+                        <button class="btn-cat" data-country="Filipino">Filipino</button>
+                        <button class="btn-cat" data-country="Italian">Italian</button>
+                        <button class="btn-cat" data-country="American">American</button>
+                    </div>
+
+                    <div class="category-group">
+                        <button class="btn-cat" data-category="Beef">Beef</button>
+                        <button class="btn-cat" data-category="Chicken">Chicken</button>
+                        <button class="btn-cat" data-category="Dessert">Dessert</button>
+                        <button class="btn-cat" data-category="Seafood">Seafood</button>
+                        <button class="btn-cat" data-category="Vegetarian">Veggie</button>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+
+        <div id="loader" class="loading-state hidden">
+            <div class="spinner"></div>
+            <p>Curating your menu...</p>
+        </div>
+
+        <main id="meal-grid" class="modern-grid"></main>
+
+        <section style="margin-top:40px; text-align: center;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <h2>Recently Viewed</h2>
+                <button id="clear-recent" class="btn-refresh">Clear</button>
+            </div>
+            <div class="carousel-wrapper">
+                <button class="carousel-btn left" id="recent-left">❮</button>
+                <div id="recent-container" class="carousel-track"></div>
+                <button class="carousel-btn right" id="recent-right">❯</button>
+            </div>
+        </section>
+
+
+        <div id="recipe-modal" class="modal-overlay hidden">
+            <div class="book-container">
+                <button id="close-modal" class="close-btn">&times;</button>
+                <div class="book-content">
+                    <div id="modal-image" class="book-left"></div>
+                    <div class="book-right">
+                        <div class="title-row">
+                            <h2 id="modal-title">Recipe Title</h2>
+                            <button id="modal-fav-btn" class="btn-fav-icon">🤍</button>
+                        </div>
+                        <div id="modal-details"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="copy-toast" class="copy-toast hidden">Copied to clipboard!</div>
+
+    <div id="planner-panel" class="planner-panel hidden">
+        <div class="planner-header">
+            <h2>Weekly Meal Planner</h2>
+            <button id="close-planner">✖</button>
+        </div>
+
+        <div class="planner-grid">
+            <div class="planner-day" data-day="mon"></div>
+            <div class="planner-day" data-day="tue"></div>
+            <div class="planner-day" data-day="wed"></div>
+            <div class="planner-day" data-day="thu"></div>
+            <div class="planner-day" data-day="fri"></div>
+            <div class="planner-day" data-day="sat"></div>
+            <div class="planner-day" data-day="sun"></div>
+        </div>
+    </div>
+
+    <script src="/javascript/script.js"></script>
+    <script src="/javascript/script2.js"></script>
+</body>
+</html>
+
